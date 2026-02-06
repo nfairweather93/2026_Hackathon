@@ -4,7 +4,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    font-family: Arial; /* Need to come up with more (contacting graphic design child) */
+    font-family: "mundial-narrow-variable", sans-serif; /* mundial as a body copy font (thanks Will), waiting on header typeface */
     background-color: lightgrey;
 }
 
@@ -32,6 +32,7 @@ Style da header
     font-size: 1.1rem; /* halve the h1 maybe? */
     opacity: 0.85; /* whimsy */
     font-style: italic;
+    font-family: "mundial-narrow-variable";
 }
 
 /* 
@@ -51,11 +52,13 @@ Style da quotes
 
 .quote{
     font-size: 1.1rem;
+    font-family: "mundial-narrow-variable";
     font-style: italic;
     margin: 0px;
 }
 
 .quoteAuthor{
     margin-top: 10px;
+    font-family: "mundial-narrow-variable";
     font-size: .8rem;  
 }
