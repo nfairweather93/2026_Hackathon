@@ -1,0 +1,61 @@
+/* WRIGHT STATE FACULTY BUDGET BALANCER STYLE WOOHOOOOOOO */
+
+/* Style da body */
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial; /* Need to come up with more (contacting graphic design child) */
+    background-color: lightgrey;
+}
+
+/* 
+---------------
+Style da header
+---------------
+*/
+.header{
+    background-color: #006633; /* Seperate this for now. Will change / be removed later */
+    color: whitesmoke;
+    text-align: center;
+    padding: 30px 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.header h1{
+    margin: 0;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+.header p{
+    margin-top: 8px;
+    font-size: 1.1rem; /* halve the h1 maybe? */
+    opacity: 0.85; /* whimsy */
+    font-style: italic;
+}
+
+/* 
+---------------
+Style da quotes
+---------------
+*/
+.quoteBox{
+    background-color: whitesmoke;
+    width: 70%;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+}
+
+.quote{
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0px;
+}
+
+.quoteAuthor{
+    margin-top: 10px;
+    font-size: .8rem;  
+}
