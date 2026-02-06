@@ -119,3 +119,65 @@ Style da search section (temporary for now, bar will look different later)
 .search-button:hover{
     background-color: darkgrey;
 }
+
+/* 
+--------------------
+Style for da results 
+--------------------
+*/
+.resultsPage{
+    width: min(1100px, 90%);
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Just so I can have two equally 'widthed' columns */
+    gap: 20px;
+}
+
+/* Panels (left and right) */
+.leftPanel{
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+    min-height: 500px;
+}
+
+.leftPanel h2{
+    margin-top: 0px;
+    font-size: 1.1rem;
+    font-family: "ador-hairline";
+}
+
+.rightPanel{
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+    min-height: 500px;
+}
+
+.rightPanel h2{
+    margin-top: 0px;
+    font-size: 1.1rem;
+    font-family: "ador-hairline";
+}
+
+.smallerBoxGrid{
+    display: grid;
+    margin-top: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+}
+
+.metricBox{
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+    min-height:210px;
+}
+
+.metricBox h3{
+    margin: 0px;
+    font-size: 1.1rem;
+}
