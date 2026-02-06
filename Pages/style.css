@@ -62,3 +62,59 @@ Style da quotes
     font-family: "mundial-narrow-variable";
     font-size: .8rem;  
 }
+
+/*
+-----------------------
+Style da search section (temporary for now, bar will look different later)
+-----------------------
+*/
+
+.searchBarContainer{
+    background-color: whitesmoke;
+    padding: 25px;
+    margin: 0px auto; /* Centers the dang thing */
+    border-radius: 15px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+}
+
+.searchBarContainer h2{
+    margin-top: 0px;
+    font-size: 1.8rem;
+    font-family: "mundial-narrow-variable";
+}
+
+.searchBarContainer p{
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-family: "mundial-narrow-variable";
+}
+
+/* Stuff here more of have to do with the search bar itself */
+.searchBar{
+    width: 90%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 2px solid whitesmoke;
+}
+
+.searchBar:focus{
+   border-color: darkgray; 
+}
+
+.searchButton{
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    background-color:gray;
+    cursor: pointer;
+    transition: .4s ease;
+}
+
+.search-button:hover{
+    background-color: darkgrey;
+}
