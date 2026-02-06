@@ -4,8 +4,12 @@
 body{
     margin: 0px;
     padding: 0px;
+    height: 100%;
     font-family: "mundial-narrow-variable", "ador-hairline", sans-serif; /* mundial as a body copy font (thanks Will), waiting on header typeface */
-    background-color: lightgrey;
+    /* background-color: bisque, blanchedalmond, antiquewhite; */
+    background-image: linear-gradient(135deg, burlywood, bisque, beige);
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Don't scroll with content. Attempting for background purposes */
 }
 
 /* 
@@ -14,8 +18,8 @@ Style da header
 ---------------
 */
 .header{
-    background-color: #006633; /* Seperate this for now. Will change / be removed later */
-    color: whitesmoke;
+    background-color: transparent; /* Seperate this for now. Will change / be removed later */
+    color: black;
     text-align: center;
     padding: 30px 15px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
@@ -23,8 +27,7 @@ Style da header
 
 .header h1{
     margin: 0;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
+    font-size: 3rem;
     font-family: "ador-hairline";
 }
 
@@ -49,6 +52,9 @@ Style da quotes
     border-radius: 12px;
     text-align: center;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    transform-origin: center;
 }
 
 .quote{
@@ -213,4 +219,21 @@ Style for da results
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
     z-index: 2; /* Draw above yo neighbors */
     position: relative; /* Security for z index */ 
+}
+
+/* More animations for index */
+.quoteBox:hover{
+    /* Scale Animation when cursor hovers*/
+    transform: scale(1.08);
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+    z-index: 2; /* Draw above yo neighbors */
+    position: relative; /* Security for z index */ 
+}
+
+.mainArea{
+  animation: slideUpFade 1.5s ease forwards;
+}
+
+.quoteInner{
+  animation: slideUpFade 1.5s ease forwards;
 }

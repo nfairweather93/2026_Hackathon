@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="icon" type="image/jpg" href="../Assets/Favicon/monomoney.jpg">
 </head>
-<body>
+<div>
     
     <!-- Header Region -->
     <header class="header">
@@ -20,10 +20,13 @@
     </header>
 
     <!-- Box for reviews / quotes -->
-    <div class="quoteBox">
-        <p class="quote">"Sample quote inserted here for testing purposes"</p>
-        <p class="quoteAuthor">Grant Rynders, 2026</p>
-    </div>
+        <div class="quoteBox">
+            <div class="quoteInner">
+                <p class="quote">"Our calculations are simply the best. Trust me, bro."</p>
+                <p class="quoteAuthor">Grant Rynders, 2026</p>
+            </div>
+        </div>
+    
 
     <!-- Main Content Area -->
     <div class="mainArea">
@@ -33,7 +36,9 @@
             <p> Enter a faculty member to see their salary efficiency</p>
         
             <input type="text" placeholder="Search faculty here..." class="searchBar"/>
-            <button class="searchButton">SEARCH</button>
+            <a href="results.html">
+                <button class="searchButton">SEARCH</button>
+            </a>
         </div>
     </div>
 </body>
