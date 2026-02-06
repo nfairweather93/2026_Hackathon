@@ -1,0 +1,5 @@
+# Base
+flask
+flask[async]
+flask-cors
+python-dotenv
