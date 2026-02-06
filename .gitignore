@@ -1,0 +1,6 @@
+/.env
+/.venv/
+*.pyc
+node_modules/
+.angular/
+__pycache__/
