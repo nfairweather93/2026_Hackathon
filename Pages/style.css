@@ -116,7 +116,7 @@ Style da search section (temporary for now, bar will look different later)
     transition: .4s ease;
 }
 
-.search-button:hover{
+.searchButton:hover{
     background-color: darkgrey;
 }
 
@@ -180,4 +180,37 @@ Style for da results
 .metricBox h3{
     margin: 0px;
     font-size: 1.1rem;
+}
+
+/* Animations for the panels */
+/* Keyframes */
+@keyframes slideUpFade{
+    from{
+        transform: translateY(60px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+/* Animations themselves */
+.leftPanel,
+.rightPanel{
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    transform-origin: center;
+}
+
+/* Please for the love of my CSS hating brain keep this separate from the other animation or everything goes breaky breaky */
+.resultsPage{
+    animation: slideUpFade 1.5s ease forwards;
+}
+
+.leftPanel:hover,
+.rightPanel:hover{
+    /* Scale Animation when cursor hovers*/
+    transform: scale(1.08);
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+    z-index: 2; /* Draw above yo neighbors */
+    position: relative; /* Security for z index */ 
 }
