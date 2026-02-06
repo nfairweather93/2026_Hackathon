@@ -1,0 +1,26 @@
+services:
+  middleware:
+    container_name: middleware
+    build:
+      context: ./middleware
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./middleware:/app
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+  webpage:
+    container_name: webpage
+    build:
+      context: ./webpage
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    env_file:
+      - .env
+    volumes:
+      - ./webpage/app:/usr/src/app
+      - /usr/src/app/node_modules
