@@ -1,13 +1,16 @@
 /* WRIGHT STATE FACULTY BUDGET BALANCER STYLE WOOHOOOOOOO */
 
+:root{
+  --siteWidth: min(900px, 90%);
+}
+
 /* Style da body */
 body{
     margin: 0px;
     padding: 0px;
     height: 100%;
-    font-family: "mundial-narrow-variable", "ador-hairline", sans-serif; /* mundial as a body copy font (thanks Will), waiting on header typeface */
-    /* background-color: bisque, blanchedalmond, antiquewhite; */
-    background-image: linear-gradient(135deg, burlywood, bisque, beige);
+    font-family: "mundial-narrow-variable", "ador-hairline", sans-serif; /* mundial as a body copy font (thanks Will), ador as header typeface */
+    background: linear-gradient(135deg, #1b2a24, #2e4a3d, #5a7d66);
     background-repeat: no-repeat;
     background-attachment: fixed; /* Don't scroll with content. Attempting for background purposes */
 }
@@ -18,25 +21,36 @@ Style da header
 ---------------
 */
 .header{
-    background-color: transparent; /* Seperate this for now. Will change / be removed later */
-    color: black;
-    text-align: center;
-    padding: 30px 15px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  width: var(--siteWidth);
+  margin: 22px auto 10px auto;     /* centers it + adds spacing to try and make it look better */
+  padding: 22px 22px;
+
+  text-align: center;
+  color: black;
+
+  background: rgba(255, 255, 255, 0.7);   /* semi-transparent, light color to match the lighter background rn */
+  border-radius: 18px;                      /* rounded pill shape? */
+
+  box-shadow: 0px 8px 22px rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.5);
 }
 
+/* Slightly heavier / more modern title I hope lol */
 .header h1{
-    margin: 0;
-    font-size: 3rem;
-    font-family: "ador-hairline";
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-family: "ador-hairline";
+  font-weight: 600;          /* heavier */
+  letter-spacing: 0.5px; /* space it out a bit */
 }
 
 .header p{
-    margin-top: 8px;
-    font-size: 1.1rem; /* halve the h1 maybe? */
-    opacity: 0.85; /* whimsy */
-    font-style: italic;
-    font-family: "mundial-narrow-variable";
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  font-style: italic;
+  font-family: "mundial-narrow-variable";
 }
 
 /* 
@@ -46,7 +60,7 @@ Style da quotes
 */
 .quoteBox{
     background-color: whitesmoke;
-    width: 70%;
+    width: var(--siteWidth);    
     margin: 25px auto;
     padding: 20px;
     border-radius: 12px;
@@ -81,7 +95,7 @@ Style da search section (temporary for now, bar will look different later)
     padding: 25px;
     margin: 0px auto; /* Centers the dang thing */
     border-radius: 15px;
-    width: 50%;
+    width: var(--siteWidth);
     text-align: center;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
 }
