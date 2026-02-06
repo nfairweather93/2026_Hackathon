@@ -4,7 +4,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    font-family: "mundial-narrow-variable", sans-serif; /* mundial as a body copy font (thanks Will), waiting on header typeface */
+    font-family: "mundial-narrow-variable", "ador-hairline", sans-serif; /* mundial as a body copy font (thanks Will), waiting on header typeface */
     background-color: lightgrey;
 }
 
@@ -25,6 +25,7 @@ Style da header
     margin: 0;
     font-size: 2.2rem;
     letter-spacing: 1px;
+    font-family: "ador-hairline";
 }
 
 .header p{
@@ -82,7 +83,7 @@ Style da search section (temporary for now, bar will look different later)
 .searchBarContainer h2{
     margin-top: 0px;
     font-size: 1.8rem;
-    font-family: "mundial-narrow-variable";
+    font-family: "ador-hairline";
 }
 
 .searchBarContainer p{
