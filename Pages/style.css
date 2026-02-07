@@ -444,6 +444,10 @@ Style for da results
   margin: 0;
 }
 
+.returnLink{
+    text-decoration-line: none;
+}
+
 /* Animations for the panels */
 /* Keyframes */
 @keyframes slideUpFade{
