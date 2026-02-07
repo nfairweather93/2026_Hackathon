@@ -50,7 +50,7 @@ def GetProfessorsByPartName():
             (Professor.first_name.contains(partial_full_name)) |
             (Professor.last_name.contains(partial_full_name)) |
             (Professor.full_name.contains(partial_full_name))
-        ).order_by(priority).all()
+        ).order_by(priority).limit(100).all()
         return super_jsonify([professor.to_dict() for professor in results], 200)
     else:
         return super_jsonify("Queried full_name was null", 300)
