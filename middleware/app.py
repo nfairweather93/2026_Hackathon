@@ -6,7 +6,7 @@ import os
 import csv
 # Local Imports
 from config import Config
-from extensions import db
+from extensions import db, super_jsonify
 from models import Professor
 from database import SeedDatabase
 
@@ -16,7 +16,7 @@ app.config.from_object(Config)
 
 CORS(
     app,
-    resources={r"/*": {"origins": "http://localhost:3000"}},
+    resources={r"/*": {"origins": "http://localhost:4200"}},
     supports_credentials=True
 )
 
@@ -32,11 +32,20 @@ with app.app_context():
 @app.route("/api/professors", methods=["GET"])
 def GetProfessors():
     professors = Professor.query.all()
-    return jsonify([professor.to_dict() for professor in professors]), 200
+    return super_jsonify([professor.to_dict() for professor in professors], 200)
+
+@app.route("/api/professors/name/", methods=["GET"])
+def GetProfessors():
+    partial_full_name = request.args.get('text')
+    if partial_full_name:
+        professors = Professor.query.filter(Professor.full_name.ilike(f"%{partial_full_name}%")).all()
+        return super_jsonify([professor.to_dict() for professor in professors], 200)
+    else:
+        return super_jsonify("Queried full_name was null", 300)
 
 @app.route("/api/health")
 def health():
-    return jsonify({"status": "ok"}), 200
+    return super_jsonify({"status": "ok"}, 200)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
