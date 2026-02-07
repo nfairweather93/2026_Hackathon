@@ -4,6 +4,12 @@ The **Wright State Faculty Budget Balancer** is a web-application used to compar
 
 This project aims to make faculty salary analysis more transparent (and a little entertaining).
 
+## 🤓 Contributors
+- Nathan Fairweather (fairweather.3@wright.edu)
+- Grant Rynders (rynders.3@wright.edu)
+
+---
+
 ## 🚀 Features
 - Search for Wright State professors by name
 - Displays public salary information
