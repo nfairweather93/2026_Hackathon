@@ -10,7 +10,7 @@
 // - PapaParse must be loaded before this file
 // ------------------------------------------------------------
 
-const CSV_URL = "../data/professors.csv"; //needs to match wherever the csv file is in the project structure
+const CSV_URL = "/static/data/professors.csv"; //needs to match wherever the csv file is in the project structure
 
 /* ------------------------------------------------------------
    Small DOM helpers

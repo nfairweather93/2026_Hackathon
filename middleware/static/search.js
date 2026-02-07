@@ -1,5 +1,5 @@
 // search.js
-import facultyNames from "../facultyNames.js";
+import facultyNames from "./facultyNames.js";
 
 const input = document.getElementById("facultySearch");
 const suggestions = document.getElementById("suggestions");
