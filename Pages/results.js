@@ -180,9 +180,9 @@ function computeEfficiency(row) {
   // 2) Weighted average (simple + explainable)
   // -------------------------
   let base = (
-    0.50 * ratingScore +
-    0.35 * wtaScore +
-    0.15 * diffScore
+    0.60 * ratingScore +
+    0.45 * wtaScore +
+    0.25 * diffScore
   );
 
   // -------------------------
