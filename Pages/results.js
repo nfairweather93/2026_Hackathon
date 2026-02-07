@@ -150,80 +150,61 @@ function animatePie(wrapper) {
    Efficiency calculation (your harsher low-number penalties)
 ------------------------------------------------------------ */
 function computeEfficiency(row) {
-  const rating = parseRating(row.prof_rating);          // 0..5 or null
-  const wta = parsePercent(row.would_take_again);       // 0..100 or null
-  const diff = parseRating(row.level_of_difficulty);    // ~1..5 or null
+  const rating = parseRating(row.prof_rating);        // 0..5 or null
+  const wta = parsePercent(row.would_take_again);     // 0..100 or null
+  const diff = parseRating(row.level_of_difficulty);  // ~1..5 or null
 
-  // Boosts (above thresholds)
-  const kR_boost = 0.30;
-  const kW_boost = 0.22;
+  // If we’re missing values, treat them as neutral-ish defaults
+  const safeRating = rating ?? 3.0;  // neutral rating
+  const safeWta = wta ?? 50;         // neutral WTA
+  const safeDiff = diff ?? 3.0;      // neutral difficulty
 
-  // Penalties (below thresholds) - harsher
-  const kR_pen = 0.65;
-  const kW_pen = 0.60;
+  // -------------------------
+  // 1) Convert raw values to 0..100 subscores
+  // -------------------------
 
-  // Curve harshness
-  const powR_hi = 2.5;
-  const powW_hi = 2.3;
-  const powR_lo = 2.5;
-  const powW_lo = 2.3;
+  // Rating: 0..5 -> 0..100
+  const ratingScore = (safeRating / 5) * 100;
 
-  // Difficulty: easy helps a bit, hard hurts more
-  const diffBonusMax = 0.18;
-  const diffPenaltyMax = 0.65;
+  // Would-take-again already 0..100
+  const wtaScore = Math.max(0, Math.min(100, safeWta));
 
-  // 1) Rating multiplier
-  let mRating = 1;
-  if (rating != null) {
-    if (rating > 3.8) {
-      const t = (rating - 3.8) / (5.0 - 3.8); // 0..1
-      const clamped = Math.max(0, Math.min(1, t));
-      mRating = 1 + kR_boost * Math.pow(clamped, powR_hi);
-    } else {
-      const t = (3.8 - rating) / 3.8; // 0..1
-      const clamped = Math.max(0, Math.min(1, t));
-      mRating = 1 - kR_pen * Math.pow(clamped, powR_lo);
-    }
-  }
+  // Difficulty: 1 is best (100), 5 is worst (0)
+  // Linear mapping:
+  // diff=1 -> 100
+  // diff=3 -> 50
+  // diff=5 -> 0
+  const diffScore = Math.max(0, Math.min(100, (5 - safeDiff) / 4 * 100));
 
-  // 2) WTA multiplier
-  let mWta = 1;
-  if (wta != null) {
-    if (wta > 75) {
-      const t = (wta - 75) / 25; // 0..1
-      const clamped = Math.max(0, Math.min(1, t));
-      mWta = 1 + kW_boost * Math.pow(clamped, powW_hi);
-    } else {
-      const t = (75 - wta) / 75; // 0..1
-      const clamped = Math.max(0, Math.min(1, t));
-      mWta = 1 - kW_pen * Math.pow(clamped, powW_lo);
-    }
-  }
+  // -------------------------
+  // 2) Weighted average (simple + explainable)
+  // -------------------------
+  let base = (
+    0.50 * ratingScore +
+    0.35 * wtaScore +
+    0.15 * diffScore
+  );
 
-  // Prevent negatives
-  mRating = Math.max(0.10, mRating);
-  mWta = Math.max(0.10, mWta);
+  // -------------------------
+  // 3) Make lows harsher (one knob)
+  // -------------------------
+  // exponent > 1 makes low scores drop faster
+  const harshness = 1.7;
+  base = 100 * Math.pow(base / 100, harshness);
 
-  // 3) Difficulty multiplier
-  let mDiff = 1;
-  if (diff != null) {
-    const t = (3.0 - diff) / 2.0; // [-1..+1]
-    const clamped = Math.max(-1, Math.min(1, t));
-    if (clamped >= 0) mDiff = 1 + diffBonusMax * clamped;
-    else mDiff = 1 + diffPenaltyMax * clamped; // negative => subtract
-  }
-
-  const rawEfficiency = 100 * (mRating * mWta * mDiff);
-
-  // Option 1: raw is the percent (cap at 100)
-  const piePercent = Math.max(0, Math.min(100, Math.round(rawEfficiency)));
+  const piePercent = Math.max(0, Math.min(100, Math.round(base)));
 
   return {
     piePercent,
-    rawEfficiency: Math.round(rawEfficiency),
-    multipliers: { mRating, mWta, mDiff },
+    rawEfficiency: Math.round(base),
+    subscores: {
+      ratingScore: Math.round(ratingScore),
+      wtaScore: Math.round(wtaScore),
+      diffScore: Math.round(diffScore),
+    },
   };
 }
+
 
 /* ------------------------------------------------------------
    Fill metric boxes
