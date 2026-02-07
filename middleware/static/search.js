@@ -1,5 +1,4 @@
 // search.js
-import facultyNames from "./facultyNames.js";
 const input = document.getElementById("facultySearch");
 const suggestions = document.getElementById("suggestions");
 const form = document.getElementById("searchForm");
@@ -12,8 +11,14 @@ let currentMatches = [];
 function normalize(s) { return (s ?? "").toLowerCase().trim(); }
 
 function isValidName(name){
-  const q = normalize(name);
-  return q && facultyNames.some(n => normalize(n) === q);
+  if (name)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 function setValidUI(valid){

@@ -5,7 +5,7 @@ from models import Professor
 from extensions import db
 
 def SeedDatabase():
-    with open(os.path.join(os.getcwd(), "rmp.csv"), mode ='r') as file:
+    with open(os.path.join(os.getcwd(), "professors.csv"), mode ='r') as file:
         csvFile = list(csv.reader(file))
     for entry in csvFile:
         professor = Professor(
