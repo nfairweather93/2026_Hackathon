@@ -22,6 +22,20 @@ This project aims to make faculty salary analysis more transparent (and a little
 
 ---
 
+## Run Instructions
+
+- Start the app:
+```bash
+docker compose up --build
+```
+>*Note: When the app is built and taken down, the sqlite database is wiped and rebuilt because all the data used is static/uneditable.*
+- Stop the app:
+```bash
+docker compose down -v
+```
+- Visit the app at: [`http:/localhost:5000`](http:/localhost:5000)
+---
+
 ## 🧠 How It Works
 
 The program takes two main inputs:
@@ -44,6 +58,8 @@ A professor's salary is weighted in comparison to their Rate My Professor attrib
 
 ---
 ## ⚙️ Tech Stack
-- Frontend: (HTML, CSS, JavaScript)
-- Backend: ()
+- App Summary:
+    - Server: Flask
+    - Database: SQLite3
+    - Webpages: HTML, CSS, JavaScript
 ---
