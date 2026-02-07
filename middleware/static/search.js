@@ -1,6 +1,5 @@
 // search.js
 import facultyNames from "./facultyNames.js";
-
 const input = document.getElementById("facultySearch");
 const suggestions = document.getElementById("suggestions");
 const form = document.getElementById("searchForm");
@@ -30,12 +29,33 @@ function showError(msg){
   errorBox.classList.remove("hidden");
 }
 
-function getMatches(query){
+async function getMatches(query){
   const q = normalize(query);
   if (!q) return [];
-  return facultyNames
-    .filter(name => normalize(name).includes(q))
-    .slice(0, 12);
+
+  try {
+    const response = await fetch(`/api/professors/name?input=${q}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
+
+    console.log(response.status);
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = await response.json();
+    return data;
+  } 
+  catch (err) 
+  {
+    console.error(err);
+    return [];
+  }
 }
 
 function openSuggestions(){
@@ -55,11 +75,10 @@ function renderList(matches){
     closeSuggestions();
     return;
   }
-
-  matches.forEach((name, idx) => {
+  Array(matches)[0].forEach((full_name, idx) => {
     const row = document.createElement("div");
     row.className = "suggestion";
-    row.textContent = name;
+    row.textContent = `${full_name}`;
 
     row.addEventListener("mousedown", (e) => {
       e.preventDefault();
@@ -94,8 +113,11 @@ function selectName(index){
 /* -----------------------------
    Input + dropdown logic
 ------------------------------ */
-input.addEventListener("input", () => {
-  renderList(getMatches(input.value));
+input.addEventListener("input", async () => {
+  let render_matches;
+  render_matches = await getMatches(input.value)
+  console.log(render_matches)
+  renderList(render_matches);
   setValidUI(isValidName(input.value));
 });
 
@@ -132,6 +154,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-input.addEventListener("focus", () => {
-  renderList(getMatches(input.value));
+input.addEventListener("focus", async () => {
+  renderList(await getMatches(input.value));
 });

@@ -39,3 +39,21 @@ class Professor(db.Model):
             "rmp_dept": self.rmp_dept,
             "tags": self.tags
         }
+    def to_array(self):
+        return [
+            self.full_name,
+            self.first_name,
+            self.last_name,
+            self.school,
+            self.job_description,
+            self.department,
+            self.earnings,
+            self.year,
+            self.rmp_url,
+            self.prof_rating,
+            self.num_ratings,
+            self.would_take_again,
+            self.level_of_difficulty,
+            self.rmp_dept,
+            self.tags
+        ]

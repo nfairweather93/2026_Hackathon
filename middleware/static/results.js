@@ -10,8 +10,6 @@
 // - PapaParse must be loaded before this file
 // ------------------------------------------------------------
 
-const CSV_URL = "/static/data/professors.csv"; //needs to match wherever the csv file is in the project structure
-
 /* ------------------------------------------------------------
    Small DOM helpers
 ------------------------------------------------------------ */
@@ -261,40 +259,33 @@ function showError(msg) {
 /* ------------------------------------------------------------
    Load CSV and find professor row
 ------------------------------------------------------------ */
-async function loadFacultyRowByName(fullName) {
-  // Sanity checks so failures are obvious:
-  if (typeof Papa === "undefined") {
-    throw new Error(
-      "PapaParse is not loaded. Add the CDN <script> for papaparse BEFORE results.js."
-    );
-  }
+async function loadFacultyRowByName(full_name) {
+  const q = normalize(full_name);
+  if (!q) return [];
 
-  // Bust cache so you see CSV updates immediately during dev
-  const url = `${CSV_URL}?v=${Date.now()}`;
-
-  const resp = await fetch(url);
-  if (!resp.ok) {
-    throw new Error(`CSV fetch failed (${resp.status}). Check CSV_URL: ${CSV_URL}`);
-  }
-
-  const csvText = await resp.text();
-
-  return new Promise((resolve, reject) => {
-    Papa.parse(csvText, {
-      header: true,
-      skipEmptyLines: true,
-      complete: (results) => {
-        const rows = results.data || [];
-        const target = normalize(fullName);
-
-        // Match against the CSV column "full_name"
-        const match = rows.find((r) => normalize(r.full_name) === target);
-
-        resolve(match || null);
+  try {
+    const response = await fetch(`/api/professors/name/full?input=${q}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
       },
-      error: (err) => reject(err),
     });
-  });
+
+    console.log(response.status);
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = await response.json();
+    return data;
+  } 
+  catch (err) 
+  {
+    console.error(err);
+    return [];
+  }
 }
 
 /* ------------------------------------------------------------
@@ -316,6 +307,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const wrapper = document.querySelector(".pieWrap");
 
   try {
+    console.log(prof)
     const row = await loadFacultyRowByName(prof);
 
     if (!row) {
