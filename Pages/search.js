@@ -1,17 +1,5 @@
 // search.js
-
-const FACULTY_NAMES = [
-  "Grant Rynders",
-  "Nathan Fairweather",
-  "John Doe",
-  "Jane Smith",
-  "Michael Johnson",
-  "Emily Davis",
-  "David Wilson",
-  "Sarah Brown",
-  "James Taylor",
-  "Jessica Miller"
-];
+import facultyNames from "../facultyNames.js";
 
 const input = document.getElementById("facultySearch");
 const suggestions = document.getElementById("suggestions");
@@ -26,7 +14,7 @@ function normalize(s) { return (s ?? "").toLowerCase().trim(); }
 
 function isValidName(name){
   const q = normalize(name);
-  return q && FACULTY_NAMES.some(n => normalize(n) === q);
+  return q && facultyNames.some(n => normalize(n) === q);
 }
 
 function setValidUI(valid){
@@ -45,9 +33,17 @@ function showError(msg){
 function getMatches(query){
   const q = normalize(query);
   if (!q) return [];
-  return FACULTY_NAMES
+  return facultyNames
     .filter(name => normalize(name).includes(q))
     .slice(0, 12);
+}
+
+function openSuggestions(){
+  suggestions.classList.remove("hidden");
+}
+
+function closeSuggestions(){
+  suggestions.classList.add("hidden");
 }
 
 function renderList(matches){
@@ -56,7 +52,7 @@ function renderList(matches){
   currentMatches = matches;
 
   if (matches.length === 0){
-    suggestions.classList.add("hidden");
+    closeSuggestions();
     return;
   }
 
@@ -73,7 +69,7 @@ function renderList(matches){
     suggestions.appendChild(row);
   });
 
-  suggestions.classList.remove("hidden");
+  openSuggestions();
 }
 
 function setActive(index){
@@ -91,10 +87,13 @@ function selectName(index){
   const name = currentMatches[index];
   if (!name) return;
   input.value = name;
-  suggestions.classList.add("hidden");
+  closeSuggestions();
   setValidUI(true);
 }
 
+/* -----------------------------
+   Input + dropdown logic
+------------------------------ */
 input.addEventListener("input", () => {
   renderList(getMatches(input.value));
   setValidUI(isValidName(input.value));
@@ -115,7 +114,7 @@ input.addEventListener("keydown", (e) => {
       selectName(activeIndex);
     }
   } else if (e.key === "Escape"){
-    suggestions.classList.add("hidden");
+    closeSuggestions();
   }
 });
 
@@ -129,7 +128,7 @@ form.addEventListener("submit", (e) => {
 
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".searchWrap")){
-    suggestions.classList.add("hidden");
+    closeSuggestions();
   }
 });
 
