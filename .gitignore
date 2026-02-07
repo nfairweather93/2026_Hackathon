@@ -5,3 +5,4 @@ node_modules/
 .angular/
 __pycache__/
 raw_data/
+app.db

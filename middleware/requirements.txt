@@ -3,3 +3,6 @@ flask
 flask[async]
 flask-cors
 python-dotenv
+# Database
+Flask-SQLAlchemy
+SQLAlchemy
