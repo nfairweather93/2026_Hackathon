@@ -188,7 +188,7 @@ Style da search section (temporary for now, bar will look different later)
     max-height:220px;
     overflow-y: auto;
 
-    z-index: 9999; /* boom */
+    z-index: 999; /* boom */
 }
 
 .suggestion{ /*each row*/
@@ -437,7 +437,7 @@ Style for da results
   font-size: 0.95rem;
   opacity: 0.9;
 
-  z-index: 999;
+  z-index: 998;
 }
 
 .footer p{
