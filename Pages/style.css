@@ -217,6 +217,55 @@ Style for da results
     opacity: .9; /* this seems fancy */
 }
 
+/* PIE CHART STUFFS YAY */
+.pieWrap{
+    margin-top:18px;
+    display:grid;
+    place-items:center;
+    position: relative;
+    min-height: 380px;
+}
+
+.pie{
+    margin-top: 25px;
+    width: 400px;
+    height: 400px;
+    transform: rotate(90deg) scaleX(-1); /* Start at the top of the pie */
+}
+
+.pieTrack{
+    fill: none;
+    stroke: rgba(0,0,0,.15);
+    stroke-width: 14;
+}
+
+.pieProgress{
+    fill:none;
+    stroke: #2e4a3d; /* Accent Coloring */
+    stroke-width:14;
+    stroke-linecap: round; /* rounded ends */
+    stroke-dasharray: 999; /* JS OVERWRITE LATER */
+    stroke-dashoffset: 999; /* JS OVERWRITES LATER */
+}
+
+.pieCenter{
+    position: absolute;
+    text-align: center;
+    transform: translateY(2px);
+}
+
+.pieValue{
+    font-size: 2.6rem;
+    font-weight: 700;
+    font-family: "mundial-narrow-variable", sans-serif;
+}
+
+.pieLabel{
+    margin-top: 6px;
+    opacity: 0.75;
+    font-style:italic;
+}
+
 /* Animations for the panels */
 /* Keyframes */
 @keyframes slideUpFade{

@@ -17,8 +17,20 @@
         <!-- Bix box on the left -->
         <div class="leftPanel">
             <h2> Overall Results </h2>
-            <div>
-                <!-- PLACEHOLDER FOR FUTURE SHOWING OF RESULTS -->
+            
+            <!-- left side pie chart for salary efficieny -->
+            <div class="pieWrap" data-percent="88">
+                <svg class="pie" viewBox="0 0 120 120" aria-label="Salary Efficieny">
+                    <!-- track -->
+                    <circle class="pieTrack" cx="60" cy="60" r="48"></circle>
+                    <!-- progress -->
+                    <circle class="pieProgress" cx="60" cy="60" r="48"></circle>
+                </svg>
+
+                <div class = "pieCenter">
+                    <div class="pieValue" id="effValue">0%</div>
+                    <div class="pieLabel"> Salary Efficieny </div>
+                </div>
             </div>
         </div>
 
@@ -46,5 +58,7 @@
             </div>
          </div>
     </div>
+<!-- JS SCRIPTS -->
+<script src="results.js"></script>
 </body>
 </html>
