@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Index } from './index';
+import { Results } from './results';
 
-describe('Index', () => {
-  let component: Index;
-  let fixture: ComponentFixture<Index>;
+describe('Results', () => {
+  let component: Results;
+  let fixture: ComponentFixture<Results>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Index]
+      imports: [Results]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Index);
+    fixture = TestBed.createComponent(Results);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
