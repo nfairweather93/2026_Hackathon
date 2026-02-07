@@ -17,52 +17,9 @@ body{
 
 /* 
 ---------------
-Style da header
+Style da header (BACK TO CENTERED)
 ---------------
 */
-.topRow{
-  width: 100%;
-  margin: 20px 0 0;
-
-  display: grid;
-  grid-template-columns: 1fr var(--siteWidth) 1fr; /* left space | locked center | right space */
-  align-items: stretch;
-
-  padding: 0 22px;          /* keeps boxes off the screen edge */
-  column-gap: 15px;         /* space between left header and question box */
-}
-
-
-/* Keep question box locked in the center column (same as old header width) */
-.questionBox{
-  grid-column: 2;
-  box-sizing: border-box;
-
-  padding: 22px 22px;       /* PUT THIS BACK (matches old header feel) */
-  text-align: center;
-
-  margin-left: -45px;
-  width: 105.5%;
-
-  background: rgba(255,255,255,0.7);
-  border-radius: 18px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,.18);
-  border: 1px solid rgba(255,255,255,.5);
-}
-
-.questionBox h1{
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.questionBox p{
-    margin-top: 8px;
-    margin-bottom: 0;
-    opacity: 0.8;
-    font-style: italic;
-}
-
 .header{
   width: var(--siteWidth);
   margin: 22px auto 10px auto;     /* centers it + adds spacing to try and make it look better */
@@ -95,33 +52,6 @@ Style da header
   opacity: 0.85;
   font-style: italic;
   font-family: "mundial-narrow-variable";
-}
-
-/* Old header becomes the left “fill the empty space” box */
-.smallHeader{
-  grid-column: 1;
-
-  width: 80%;              /* fill the entire left gutter */
-  margin: 0;                /* override .header margins */
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  padding: 22px 22px;       /* keep same height vibe as questionBox */
-}
-
-
-.smallHeader h1{
-  font-size: 1.15rem;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.smallHeader p{
-    font-size: 0.8rem;
 }
 
 /* 
@@ -166,7 +96,7 @@ Style da search section (temporary for now, bar will look different later)
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 30px;
     gap: 25px;
 }
 
@@ -219,6 +149,59 @@ Style da search section (temporary for now, bar will look different later)
 
 .searchButton:hover{
     background-color: darkgrey;
+}
+
+.searchButton:disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* SEARCHY SEARCHY */
+.searchWrap{
+    position: relative;
+    width:90%;
+    margin:0 auto;
+}
+
+/* Dropdown */
+.suggestions{
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 12px;
+
+    box-shadow: 0px 10px 24px rgba(0,0,0,.2);
+    max-height:220px;
+    overflow-y: auto;
+
+    z-index: 50; /* boom */
+}
+
+.suggestion{ /*each row*/
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-align:left;
+}
+
+/* hover and keyboard highlights */
+.suggestion:hover,
+.suggestion.active{
+    background: rgba(46,74,61,.12);
+}
+
+.hidden{
+    display:none;
+}
+
+.searchError{
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #8b1e1e;
 }
 
 /* 
@@ -290,7 +273,6 @@ Style for da results
     opacity: 0.9;
 }
 
-
 .smallerBoxGrid{
     display: grid;
     margin-top: 14px;
@@ -325,58 +307,6 @@ Style for da results
     background: var(--accent, #2e5a3d); /* default accent color */
     border-radius: 999px; /* round that edge */
     opacity: .9; /* this seems fancy */
-}
-
-/* SEARCHY SEARCHY */
-.searchWrap{
-    position: relative;
-    width:90%;
-    margin:0 auto;
-}
-/* Dropdown */
-.suggestions{
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-
-    background: rgba(255,255,255,.9);
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: 12px;
-
-    box-shadow: 0px 10px 24px rgba(0,0,0,.2);
-    max-height:220px;
-    overflow-y: auto;
-
-    z-index: 50; /* boom */
-}
-
-.suggestion{ /*each row*/
-    padding: 10px 12px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    text-align:left;
-}
-
-/* hover and keyboard highlights */
-.suggestion:hover,
-.suggestion.active{
-    background: rgba(46,74,61,.12);
-}
-
-.hidden{
-    display:none;
-}
-
-.searchError{
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: #8b1e1e;
-}
-
-.searchButton:disabled{
-    opacity: .5;
-    cursor: not-allowed;
 }
 
 /* PIE CHART STUFFS YAY */
@@ -440,6 +370,7 @@ Style for da results
         opacity: 1;
     }
 }
+
 /* Animations themselves */
 .leftPanel,
 .rightPanel{
@@ -476,4 +407,49 @@ Style for da results
 
 .quoteInner{
   animation: slideUpFade 1.5s ease forwards;
+}
+
+/* ---------------------------
+Typewriter effect
+--------------------------- */
+
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: var(--tw-width, 27ch); } /* fallback if you don't set it */
+}
+
+@keyframes caretBlink {
+  0%, 100% { border-color: transparent; }
+  50%      { border-color: rgba(0,0,0,.85); }
+}
+
+/* Centered typewriter (width can animate without drifting) */
+.typewriterClip{
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+
+  clip-path: inset(0 100% 0 0);
+  animation: revealClip 1.6s steps(27) forwards;
+}
+
+.typewriterClip::after{
+  content:"";
+  display:inline-block;
+  width:2px;
+  height: 1.05em;
+  margin-left: 6px;
+  background: rgba(0,0,0,.85);
+  animation: caretBlink 700ms steps(1) infinite;
+  transform: translateY(2px);
+}
+
+@keyframes revealClip{
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes caretBlink{
+  0%,100% { opacity: 0; }
+  50%     { opacity: 1; }
 }
