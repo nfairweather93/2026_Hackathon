@@ -1,62 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wright State Faculty Budget Balancer</title>
-  <link rel="stylesheet" href="style.scss"/>
-  <link rel="icon" type="image/jpg" href="../Assets/Favicon/monomoney.jpg">
-  <script src="main.ts" defer></script>
+  <meta charset="utf-8">
+  <title>App</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-
 <body>
-
-  <!-- Header Region (BACK TO CENTERED) -->
-  <header class="header">
-    <h1 class="typewriterClip">"Is your professor being overpaid..?"</h1>
-    <p>Find salary efficiency, ratings, and public data instantly!</p>
-  </header>
-
-  <!-- Main Content Area -->
-  <div class="mainArea">
-    <div class="searchBarContainer">
-      <h2>Search Faculty</h2>
-      <p>Enter a faculty member to see their salary efficiency</p>
-
-      <form id="searchForm" action="/app/results/results.html" method="GET">
-        <div class="searchWrap">
-          <input
-            type="text"
-            id="facultySearch"
-            name="professor"
-            placeholder="Search faculty here..."
-            class="searchBar"
-            autocomplete="off"
-          />
-          <div id="suggestions" class="suggestions hidden"></div>
-        </div>
-
-        <button class="searchButton" id="searchButton" type="submit" disabled>
-          SEARCH
-        </button>
-
-        <div id="searchError" class="searchError hidden"></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Quote box -->
-  <div class="quoteBox">
-    <div class="quoteInner">
-      <p class="quote">"Our calculations are simply the best. Trust me, bro."</p>
-      <p class="quoteAuthor">Grant Rynders, 2026</p>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p>Wright State Faculty Budget Balancer !© 2026 | Built for Hackathon Chaos</p>
-  </div>
-
+  <app-root></app-root>
 </body>
 </html>
