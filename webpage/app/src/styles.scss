@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 /* WRIGHT STATE FACULTY BUDGET BALANCER STYLE WOOHOOOOOOO */
 
 :root{
@@ -73,8 +72,15 @@ Style da quotes
     text-align: center;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
 
-    transition: transform 200ms ease, box-shadow 200ms ease;
+    /* NOTE: keep transition if you want subtle shadow smoothing,
+       but there is NO transform scaling anymore */
+    transition: box-shadow 200ms ease;
     transform-origin: center;
+}
+
+/* IMPORTANT: No hover transform here anymore */
+.quoteBox:hover{
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
 }
 
 .quote{
@@ -182,7 +188,7 @@ Style da search section (temporary for now, bar will look different later)
     max-height:220px;
     overflow-y: auto;
 
-    z-index: 50; /* boom */
+    z-index: 999; /* boom */
 }
 
 .suggestion{ /*each row*/
@@ -431,11 +437,15 @@ Style for da results
   font-size: 0.95rem;
   opacity: 0.9;
 
-  z-index: 999;
+  z-index: 998;
 }
 
 .footer p{
   margin: 0;
+}
+
+.returnLink{
+    text-decoration-line: none;
 }
 
 /* Animations for the panels */
@@ -472,15 +482,6 @@ Style for da results
     position: relative; /* Security for z index */ 
 }
 
-/* More animations for index */
-.quoteBox:hover{
-    /* Scale Animation when cursor hovers*/
-    transform: scale(1.08);
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
-    z-index: 2; /* Draw above yo neighbors */
-    position: relative; /* Security for z index */ 
-}
-
 .header:hover{
     /* Scale Animation when cursor hovers*/
     transform: scale(1.08);
@@ -495,6 +496,10 @@ Style for da results
 
 .quoteInner{
   animation: slideUpFade 1.5s ease forwards;
+}
+
+.quote, .quoteAuthor {
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* ---------------------------

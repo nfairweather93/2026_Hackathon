@@ -1,63 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wright State Faculty Budget Balancer</title>
-  <link rel="stylesheet" href="home.scss"/>
-  <script src="home.js" defer></script>
-  <script src="home.ts" defer></script>
+<!-- Header Region -->
+<header class="header">
+  <h1 class="typewriterClip">"Is your professor being overpaid..?"</h1>
+  <p>Find salary efficiency, ratings, and public data instantly!</p>
+</header>
 
-</head>
+<!-- Main Content Area -->
+<div class="mainArea">
+  <div class="searchBarContainer">
+    <h2>Search Faculty</h2>
+    <p>Enter a faculty member to see their salary efficiency</p>
 
-<body>
+    <form class="searchWrap" (submit)="submit()">
+      <div class="searchWrap">
+        <input
+          type="text"
+          id="facultySearch"
+          name="professor"
+          placeholder="Search faculty here..."
+          class="searchBar"
+          autocomplete="off"
+          [value]="query"
+          (input)="onInput($event.target.value)"
+          (keydown)="onKeydown($event)"
+          (focus)="onFocus()"
+        />
 
-  <!-- Header Region (BACK TO CENTERED) -->
-  <header class="header">
-    <h1 class="typewriterClip">"Is your professor being overpaid..?"</h1>
-    <p>Find salary efficiency, ratings, and public data instantly!</p>
-  </header>
-
-  <!-- Main Content Area -->
-  <div class="mainArea">
-    <div class="searchBarContainer">
-      <h2>Search Faculty</h2>
-      <p>Enter a faculty member to see their salary efficiency</p>
-
-      <form id="searchForm" action="./results/results.html" method="GET">
-        <div class="searchWrap">
-          <input
-            type="text"
-            id="facultySearch"
-            name="professor"
-            placeholder="Search faculty here..."
-            class="searchBar"
-            autocomplete="off"
-          />
-          <div id="suggestions" class="suggestions hidden"></div>
+        <div
+          id="suggestions"
+          class="suggestions"
+          *ngIf="showSuggestions"
+        >
+          <div
+            class="suggestion"
+            *ngFor="let name of matches; let i = index"
+            [class.active]="i === activeIndex"
+            (mousedown)="selectName(i)"
+          >
+            {{ name }}
+          </div>
         </div>
+      </div>
 
-        <button class="searchButton" id="searchButton" type="submit" disabled>
-          SEARCH
-        </button>
+      <button
+        class="searchButton"
+        id="searchButton"
+        type="submit"
+        [disabled]="!isValid"
+      >
+        SEARCH
+      </button>
 
-        <div id="searchError" class="searchError hidden"></div>
-      </form>
-    </div>
+      <div
+        id="searchError"
+        class="searchError"
+        *ngIf="errorMessage"
+      >
+        {{ errorMessage }}
+      </div>
+    </form>
   </div>
+</div>
 
-  <!-- Quote box -->
-  <div class="quoteBox">
-    <div class="quoteInner">
-      <p class="quote">"Our calculations are simply the best. Trust me, bro."</p>
-      <p class="quoteAuthor">Grant Rynders, 2026</p>
-    </div>
+<!-- Quote box -->
+<div class="quoteBox">
+  <div class="quoteInner">
+    <p class="quote" id="quoteText">
+      "Our calculations are simply the best. Trust me, bro."
+    </p>
+    <p class="quoteAuthor" id="quoteAuthor">
+      Grant Rynders, 2026
+    </p>
   </div>
+</div>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>Wright State Faculty Budget Balancer !© 2026 | Built for Hackathon Chaos</p>
-  </div>
-
-</body>
-</html>
+<!-- Footer -->
+<div class="footer">
+  <p>Wright State Faculty Budget Balancer © 2026 | Built for Hackathon Chaos</p>
+</div>
