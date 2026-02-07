@@ -62,6 +62,7 @@ Style da quotes
     background-color: whitesmoke;
     width: var(--siteWidth);    
     margin: 25px auto;
+    margin-top: 30px;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
@@ -89,6 +90,14 @@ Style da quotes
 Style da search section (temporary for now, bar will look different later)
 -----------------------
 */
+/* I want it centered. Should be the focus */
+.mainArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    gap: 25px;
+}
 
 .searchBarContainer{
     background-color: whitesmoke;
@@ -160,6 +169,13 @@ Style for da results
     padding: 20px;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
     min-height: 500px;
+}
+
+.profName{
+    margin: 8px 0 0 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    opacity: 0.9;
 }
 
 .rightPanel{
@@ -278,6 +294,17 @@ Style for da results
 
 .hidden{
     display:none;
+}
+
+.searchError{
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #8b1e1e;
+}
+
+.searchButton:disabled{
+    opacity: .5;
+    cursor: not-allowed;
 }
 
 /* PIE CHART STUFFS YAY */

@@ -19,7 +19,32 @@
         <h1> Wright State Faculty Budget Balancer </h1>
         <p> Balancing salaries, budgets, and criminal records in one quick search! </p>
     </header>
+    
+    <!-- Main Content Area -->
+    <div class="mainArea">
+        <!-- Search Bar -->
+        <div class="searchBarContainer">
+            <h2> Search Faculty </h2>
+            <p> Enter a faculty member to see their salary efficiency</p>
+            <form id="searchForm" action="results.html" method="GET">
+                <div class="searchWrap">
+                    <input
+                        type="text"
+                        id="facultySearch"
+                        name="professor"
+                        placeholder="Search faculty here..."
+                        class="searchBar"
+                        autocomplete="off"
+                    />
+                    <div id="suggestions" class="suggestions hidden"></div>
+                </div>
+                <button class="searchButton" id="searchButton" type="submit" disabled>SEARCH</button>
 
+                <div id="searchError" class="searchError hidden"></div>
+            </form>
+        </div>
+    </div> 
+      
     <!-- Box for reviews / quotes -->
         <div class="quoteBox">
             <div class="quoteInner">
@@ -27,29 +52,5 @@
                 <p class="quoteAuthor">Grant Rynders, 2026</p>
             </div>
         </div>
-    
-
-    <!-- Main Content Area -->
-    <div class="mainArea">
-        <!-- Search Bar -->
-        <div class="searchBarContainer">
-            <h2> Search Faculty </h2>
-            <p> Enter a faculty member to see their salary efficiency</p>
-            <div class="searchWrap">
-                <input
-                    type="text"
-                    id="facultySearch"
-                    placeholder="Search faculty here..."
-                    class="searchBar"
-                    autocomplete="off"
-                />
-
-                <div id="suggestions" class="suggestions hidden"></div>
-            </div>
-            <a href="results.html">
-                <button class="searchButton" id="searchButton">SEARCH</button>
-            </a>
-        </div>
-    </div>  
 </body>
 </html>
