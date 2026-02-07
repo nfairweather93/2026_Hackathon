@@ -1,6 +1,6 @@
 from extensions import db
 from flask_sqlalchemy import SQLAlchemy
-
+from json import dumps
 class Professor(db.Model):
     __tablename__ = "professors"
 

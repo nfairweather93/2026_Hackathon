@@ -23,7 +23,7 @@ def SeedDatabase():
             would_take_again = entry[11],
             level_of_difficulty = entry[12],
             rmp_dept = entry[13],
-            tags = json.dumps(entry[13])
+            tags = json.dumps(entry[14])
         )
 
         db.session.add(professor)

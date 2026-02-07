@@ -36,7 +36,7 @@ def GetProfessors():
     return super_jsonify([professor.to_dict() for professor in professors], 200)
 
 @app.route("/api/professors/name/", methods=["GET"])
-def GetProfessorsByPartName():
+def GetProfessorsByName():
     partial_full_name = request.args.get('input')
     if partial_full_name:
         priority = case(
@@ -50,6 +50,24 @@ def GetProfessorsByPartName():
             (Professor.first_name.contains(partial_full_name)) |
             (Professor.last_name.contains(partial_full_name)) |
             (Professor.full_name.contains(partial_full_name))
+        ).order_by(priority).limit(100).all()
+        return super_jsonify([professor.to_dict() for professor in results], 200)
+    else:
+        return super_jsonify("Queried full_name was null", 300)
+    
+@app.route("/api/professors/department/", methods=["GET"])
+def GetProfessorsByDepartment():
+    dept_name = request.args.get('input')
+    if dept_name:
+        priority = case(
+            (Professor.rmp_dept.contains(dept_name), 1),  # highest priority
+            (Professor.department.contains(dept_name), 2),   # second
+            else_=3  # everything else
+        )
+
+        results = Professor.query.filter(
+            (Professor.rmp_dept.contains(dept_name)) |
+            (Professor.department.contains(dept_name))
         ).order_by(priority).limit(100).all()
         return super_jsonify([professor.to_dict() for professor in results], 200)
     else:
