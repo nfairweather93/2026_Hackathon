@@ -212,16 +212,16 @@ function fillMetricBoxes(row) {
   const salary = parseMoney(row.earnings);
 
   if ($("overallRating"))
-    $("overallRating").textContent = `${formatRating(rating)}/5 Overall Rating ⭐`;
+    $("overallRating").textContent = `${formatRating(rating)}/5.0`;
 
   if ($("wouldTakeAgain"))
-    $("wouldTakeAgain").textContent = `${formatPercent(wta)} Would Take Again 💎`;
+    $("wouldTakeAgain").textContent = `${formatPercent(wta)}`;
 
   if ($("difficultyRating"))
-    $("difficultyRating").textContent = `${formatRating(diff)}/5 Difficulty Rating 😡`;
+    $("difficultyRating").textContent = `${formatRating(diff)}/5.0`;
 
   if ($("startingSalary"))
-    $("startingSalary").textContent = `${formatSalary(salary)} Starting Salary 💵`;
+    $("startingSalary").textContent = `${formatSalary(salary)}`;
 }
 
 /* ------------------------------------------------------------
