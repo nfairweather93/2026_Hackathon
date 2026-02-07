@@ -155,32 +155,53 @@ Style for da results
 
 /* Panels (left and right) */
 .leftPanel{
-    background: white;
+    background: linear-gradient(135deg, white, whitesmoke, rgb(180, 180, 180));
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
     min-height: 500px;
-}
-
-.leftPanel h2{
-    margin-top: 0px;
-    font-size: 1.1rem;
-    font-family: "ador-hairline";
 }
 
 .rightPanel{
-    background: white;
+    background: linear-gradient(135deg, white, whitesmoke, rgb(180, 180, 180));
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
     min-height: 500px;
 }
 
+.leftPanel h2,
 .rightPanel h2{
-    margin-top: 0px;
-    font-size: 1.1rem;
+    position: relative;
+    padding-left: 18px; /* Space for the colored line */
+    margin: 0 0 18px 0;
+    font-size: 1.4rem;
+    font-weight: 700;
     font-family: "ador-hairline";
+    letter-spacing: 0.5px;
+    color: 1a1a1a;
+
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.15);
 }
+
+/* Little colored lines for the titles as well */
+.leftPanel h2::before,
+.rightPanel h2::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 6px;
+
+    margin-bottom: 8px;
+
+    background: #2e5a3d;  /* default color */
+    border-radius: 999px;
+    opacity: 0.9;
+}
+
 
 .smallerBoxGrid{
     display: grid;
@@ -190,6 +211,7 @@ Style for da results
 }
 
 .metricBox{
+    background: white;
     position: relative;
     border-radius: 15px;
     padding: 15px 15px 15px 26px; /* Extra left padding for the stripe */
