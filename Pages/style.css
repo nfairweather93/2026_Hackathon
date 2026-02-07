@@ -498,6 +498,10 @@ Style for da results
   animation: slideUpFade 1.5s ease forwards;
 }
 
+.quote, .quoteAuthor {
+  transition: opacity 0.5s ease-in-out;
+}
+
 /* ---------------------------
 Typewriter effect
 --------------------------- */

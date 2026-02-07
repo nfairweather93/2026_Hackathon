@@ -7,12 +7,10 @@
 // 4) Fill metric boxes
 // 5) Compute "efficiency" and animate the pie
 //
-// REQUIREMENTS:
-// - Must run on a local server (Live Server / python http.server etc.)
-// - PapaParse must be loaded before this file (see comments above)
+// - PapaParse must be loaded before this file
 // ------------------------------------------------------------
 
-const CSV_URL = "../data/professors.csv";
+const CSV_URL = "../data/professors.csv"; //needs to match wherever the csv file is in the project structure
 
 /* ------------------------------------------------------------
    Small DOM helpers
