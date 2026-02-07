@@ -10,8 +10,9 @@
     <title>Wright State Faculty Budget Balancer</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="icon" type="image/jpg" href="../Assets/Favicon/monomoney.jpg">
+    <script src="search.js" defer></script>
 </head>
-<div>
+<body>
     
     <!-- Header Region -->
     <header class="header">
@@ -34,12 +35,21 @@
         <div class="searchBarContainer">
             <h2> Search Faculty </h2>
             <p> Enter a faculty member to see their salary efficiency</p>
-        
-            <input type="text" placeholder="Search faculty here..." class="searchBar"/>
+            <div class="searchWrap">
+                <input
+                    type="text"
+                    id="facultySearch"
+                    placeholder="Search faculty here..."
+                    class="searchBar"
+                    autocomplete="off"
+                />
+
+                <div id="suggestions" class="suggestions hidden"></div>
+            </div>
             <a href="results.html">
-                <button class="searchButton">SEARCH</button>
+                <button class="searchButton" id="searchButton">SEARCH</button>
             </a>
         </div>
-    </div>
+    </div>  
 </body>
 </html>
