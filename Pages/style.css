@@ -34,6 +34,9 @@ Style da header (BACK TO CENTERED)
 
   box-shadow: 0px 8px 22px rgba(0,0,0,0.18);
   border: 1px solid rgba(255,255,255,0.5);
+
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  transform-origin: center;
 }
 
 /* Slightly heavier / more modern title I hope lol */
@@ -405,6 +408,35 @@ Style for da results
     font-weight:bold;
 }
 
+/* FOOTTER */
+/* Sticky full-width footer */
+.footer{
+  width: 100%;
+  margin: 0;                 /* no auto-centering */
+  padding: 14px 18px;
+  box-sizing: border-box;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+
+  text-align: center;
+
+  background: rgba(255,255,255,0.75);
+  border-top: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0px -8px 22px rgba(0,0,0,0.18);
+
+  font-family: "mundial-narrow-variable", sans-serif;
+  font-size: 0.95rem;
+  opacity: 0.9;
+
+  z-index: 999;
+}
+
+.footer p{
+  margin: 0;
+}
+
 /* Animations for the panels */
 /* Keyframes */
 @keyframes slideUpFade{
@@ -441,6 +473,14 @@ Style for da results
 
 /* More animations for index */
 .quoteBox:hover{
+    /* Scale Animation when cursor hovers*/
+    transform: scale(1.08);
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+    z-index: 2; /* Draw above yo neighbors */
+    position: relative; /* Security for z index */ 
+}
+
+.header:hover{
     /* Scale Animation when cursor hovers*/
     transform: scale(1.08);
     box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
