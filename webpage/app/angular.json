@@ -27,7 +27,6 @@
               {
                 "glob": "**/*",
                 "input": "public",
-                "src/app/results/results.html"
               }
             ],
             "styles": [
