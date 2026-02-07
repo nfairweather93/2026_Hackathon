@@ -12,15 +12,18 @@ services:
       - .env
     environment:
       - FLASK_ENV=development
-  webpage:
-    container_name: webpage
-    build:
-      context: ./webpage
-      dockerfile: Dockerfile
-    ports:
-      - "4200:4200"
-    env_file:
-      - .env
-    volumes:
-      - ./webpage/app:/usr/src/app
-      - /usr/src/app/node_modules
+
+  # We were using Angular and I realized this was totally overkill for our purposes, so I just pivoted to full flask
+
+  # webpage:
+  #   container_name: webpage
+  #   build:
+  #     context: ./webpage
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4200:4200"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./webpage/app:/usr/src/app
+  #     - /usr/src/app/node_modules
