@@ -1,8 +1,22 @@
-// results.js
-// - Reads ?professor=... from the URL
-// - Redirects back to index.html if missing/blank
-// - Displays the professor name in #profName
-// - Animates the pie chart based on .pieWrap[data-percent]
+function getEfficiencyBlurb(percent) {
+  if (percent >= 90) {
+    return "Absolute bargain. They’re delivering a ton of value for the pay (faculty efficiency god mode).";
+  } else if (percent >= 75) {
+    return "Solid deal. Pay seems pretty aligned with performance.";
+  } else if (percent >= 60) {
+    return "Meh. Not terrible, but the value-to-pay ratio is starting to wobble a bit.";
+  } else if (percent >= 40) {
+    return "Rough. Pay looks high relative to perceived performance— proceed with budget caution.";
+  } else {
+    return "Yikes. This is giving 'expensive spreadsheet cell' energy. Efficiency is very low.";
+  }
+}
+
+function getEfficiencyColor(percent) {
+  percent = Math.max(0, Math.min(100, percent));
+  const hue = (percent / 100) * 120;     // red -> green
+  return `hsl(${hue}, 80%, 45%)`;
+}
 
 function animatePie(wrapper) {
   const percentRaw = wrapper.dataset.percent ?? "0";
@@ -13,8 +27,15 @@ function animatePie(wrapper) {
 
   const progress = wrapper.querySelector(".pieProgress");
   const valueEl = wrapper.querySelector(".pieValue");
-
   if (!progress || !valueEl) return;
+
+  // Update the summary blurb
+  const blurbEl = document.getElementById("effBlurb");
+  if (blurbEl) blurbEl.textContent = getEfficiencyBlurb(percent);
+
+  // ✅ Smooth color blend (no glow)
+  progress.style.stroke = getEfficiencyColor(percent);
+  progress.style.filter = "none";
 
   // Circle geometry
   const r = progress.r.baseVal.value;
@@ -34,7 +55,7 @@ function animatePie(wrapper) {
       { strokeDashoffset: targetOffset }
     ],
     {
-      duration: 4000, // slow ring
+      duration: 4000,
       easing: "cubic-bezier(.2,.9,.2,1)",
       fill: "forwards"
     }
@@ -42,11 +63,11 @@ function animatePie(wrapper) {
 
   // Animate number
   const start = performance.now();
-  const duration = 1800; // slow-ish number
+  const duration = 1800;
 
   function tick(now) {
     const t = Math.min(1, (now - start) / duration);
-    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+    const eased = 1 - Math.pow(1 - t, 3);
     valueEl.textContent = `${Math.round(eased * percent)}%`;
     if (t < 1) requestAnimationFrame(tick);
   }
@@ -55,21 +76,17 @@ function animatePie(wrapper) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Read professor from query param
   const params = new URLSearchParams(window.location.search);
   const prof = params.get("professor");
 
-  // 2) If missing, kick back to index
   if (!prof || !prof.trim()) {
     window.location.href = "index.html";
     return;
   }
 
-  // 3) Display name above the pie
   const profNameEl = document.getElementById("profName");
   if (profNameEl) profNameEl.textContent = prof;
 
-  // 4) Animate the pie
   const wrapper = document.querySelector(".pieWrap");
   if (wrapper) animatePie(wrapper);
 });

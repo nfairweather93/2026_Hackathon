@@ -218,12 +218,17 @@ Style for da results
 }
 
 /* Panels (left and right) */
+/* Make left panel a simple vertical layout (FIXED GRID ROWS) */
 .leftPanel{
-    background: linear-gradient(135deg, white, whitesmoke, rgb(180, 180, 180));
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
-    min-height: 500px;
+  background: linear-gradient(135deg, white, whitesmoke, rgb(180, 180, 180));
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.6);
+  min-height: 500px;
+
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* h2 | h3 | pie area | bottom text */
+  gap: 14px;
 }
 
 .profName{
@@ -231,6 +236,7 @@ Style for da results
     font-size: 1.1rem;
     font-weight: 700;
     opacity: 0.9;
+    border-bottom: 2px solid rgba(0,0,0,0.15);
 }
 
 .rightPanel{
@@ -293,6 +299,17 @@ Style for da results
 .metricBox h3{
     margin: 0px;
     font-size: 1.1rem;
+    border-bottom: 2px solid rgba(0,0,0,0.15);
+}
+
+/* Paragraph inside metric box */
+.metricBox p{
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    font-family: "mundial-narrow-variable", sans-serif;
+    font-weight: 700;
+    opacity: 0.9;
 }
 
 /* the colored stripe */
@@ -309,19 +326,23 @@ Style for da results
     opacity: .9; /* this seems fancy */
 }
 
-/* PIE CHART STUFFS YAY */
+/* PIE CHART STUFFS YAY (FIXED SIZING/CENTERING) */
 .pieWrap{
-    margin-top:18px;
-    display:grid;
-    place-items:center;
+    margin-top: 0;
+    display: grid;
+    place-items: center;
     position: relative;
-    min-height: 380px;
+
+    width: 100%;
+    min-height: 420px;  /* >= 400 so the circle never clips */
+    height: auto;       /* IMPORTANT: don't force 100% inside grid */
 }
 
 .pie{
-    margin-top: 25px;
+    display: block;     /* remove inline baseline weirdness */
     width: 400px;
     height: 400px;
+    margin: 0;
     transform: rotate(90deg) scaleX(-1); /* Start at the top of the pie */
 }
 
@@ -342,8 +363,9 @@ Style for da results
 
 .pieCenter{
     position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    transform: translateY(2px);
 }
 
 .pieValue{
@@ -356,6 +378,31 @@ Style for da results
     margin-top: 6px;
     opacity: 0.75;
     font-style:italic;
+}
+
+/* Bottom text panel that fills the remaining bottom "slot" */
+.pieSummary{
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 14px;
+    padding: 14px 14px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.18);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* makes it feel “anchored” */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.pieSummary p{
+    margin: 0;
+    line-height: 1.35;
+    opacity: 0.9;
+    width: 100%;
+    display:block;
+    font-family: "mundial-narrow-variable";
+    font-weight:bold;
 }
 
 /* Animations for the panels */
