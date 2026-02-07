@@ -152,11 +152,20 @@ class RmpScraper:
             else:
                 print(f"-")
 
+class PeopleScraper:
+    def Scrape(self, in_csv_path:str, out_csv_path:str):
+        csv_list = list[str]()
+        out_csv=os.path.join(os.getcwd(), "scrapers", "rmp.csv")
+        with open(in_csv_path, mode ='r') as file:
+            csvFile = list(csv.reader(file))
+            
+
 def main():
     payroll = PayrollScraper()
     # payroll.Scrape(in_state="oh", in_school="wright-state-university", in_year="2023", in_begin_page=1)
     rmp = RmpScraper()
-    rmp.Scrape(os.path.join(os.getcwd(), "scrapers","salary.csv"))
-
+    # rmp.Scrape(os.path.join(os.getcwd(), "scrapers","salary.csv"))
+    people = PeopleScraper()
+    # people.Scrape(os.path.join(os.getcwd(), "scrapers", "rmp.csv"), "people.csv")
 if __name__=="__main__":
     main()
